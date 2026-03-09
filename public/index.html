@@ -1,0 +1,93 @@
+﻿<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Telegram Hold'em</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="topbar">
+        <h1>Texas Hold'em Director Build</h1>
+        <div class="room-tools">
+          <label>
+            Room
+            <input id="roomInput" maxlength="8" placeholder="예: AB12CD" />
+          </label>
+          <button id="joinBtn">입장</button>
+          <button id="copyBtn">링크 복사</button>
+        </div>
+      </header>
+
+      <section class="status-row">
+        <div id="phaseBadge" class="badge">대기</div>
+        <div class="pot">POT: <span id="potValue">0</span></div>
+        <div>Current Bet: <span id="currentBet">0</span></div>
+        <div>Min Raise: <span id="minRaise">20</span></div>
+        <div id="turnText" class="turn">턴: -</div>
+        <div id="timerText" class="timer">타이머: -</div>
+        <div id="nextHandText" class="timer">다음 핸드: -</div>
+      </section>
+
+      <section id="networkBanner" class="banner hidden">네트워크 연결이 끊겼습니다. 재연결 중...</section>
+
+      <section class="table">
+        <div class="board-wrap">
+          <h2>Board</h2>
+          <div id="boardCards" class="cards board-cards"></div>
+        </div>
+
+        <div class="players-wrap">
+          <h2>Players (<span id="seatInfo">0/6</span>)</h2>
+          <div id="players" class="players"></div>
+          <div id="spectators" class="spectators"></div>
+        </div>
+      </section>
+
+      <section class="controls">
+        <button id="startBtn">핸드 시작</button>
+        <button id="botBtn">봇 추가</button>
+        <button id="sitInBtn">착석</button>
+        <button id="rebuyBtn">리바이</button>
+
+        <button id="checkBtn">체크</button>
+        <button id="callBtn">콜</button>
+        <button id="betBtn">베팅</button>
+        <input id="raiseInput" type="number" min="20" step="10" value="20" />
+        <button id="raiseBtn">레이즈</button>
+        <button id="allinBtn">올인</button>
+        <button id="foldBtn" class="danger">폴드</button>
+      </section>
+
+
+      <section class="deck-themes">
+        <span>카드백 테마:</span>
+        <button class="theme-btn" data-theme="classic">Classic</button>
+        <button class="theme-btn" data-theme="blue">Blue</button>
+        <button class="theme-btn" data-theme="red">Red</button>
+      </section>      <section class="settings">
+        <label><input id="lockedToggle" type="checkbox" /> 방 잠금(신규 관전만)</label>
+        <label><input id="autoStartToggle" type="checkbox" checked /> 결과 후 자동 다음 핸드</label>
+        <label>리바이 금액 <input id="rebuyAmountInput" type="number" min="100" step="100" value="1000" /></label>
+      </section>
+
+      <section class="log-grid">
+        <div class="log-box">
+          <h2>상태</h2>
+          <p id="message">방에 입장하세요.</p>
+          <div id="winners"></div>
+        </div>
+        <div class="log-box">
+          <h2>액션 로그</h2>
+          <div id="actionLog" class="action-log"></div>
+        </div>
+      </section>
+    </div>
+
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/app.js"></script>
+  </body>
+</html>
+

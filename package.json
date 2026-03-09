@@ -1,0 +1,15 @@
+﻿{
+  "name": "telegram-miniapp-holdem",
+  "version": "1.0.0",
+  "description": "Texas Hold'em MVP for Telegram Mini App",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "socket.io": "^4.8.1"
+  }
+}
